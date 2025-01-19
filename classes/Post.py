@@ -1,16 +1,30 @@
 import pygame
 
 from constants import *
+from classes.Comment import Comment
 from helpers import screen
+from helpers import text_display
 
+# from classes import Comment
 
 class Post:
     """
     A class used to represent post on Nitzagram
     """
-    def __init__(self): #TODO: add parameters
+    def __init__(self,user_name,location,description,likes_counter,comments): #TODO: add parameters
         #TODO: write me!
-        pass
+        self.comments_display_index = 0
+        self.comments = comments
+        self.likes_counter = likes_counter
+        self.description = description
+        self.location = location
+        self.user_name = user_name
+
+    def add_like(self):
+        self.likes_counter += 1
+
+    def add_comment(self,text):
+        self.comments.append(Comment(text))
 
     def display(self):
         """
@@ -19,9 +33,22 @@ class Post:
 
         :return: None
         """
-        # TODO: write me!
-        pass
+        self.display_description()
+        self.display_likes()
+        self.display_location()
+        self.display_user_name()
+        self.display_comments()
 
+    def display_likes(self):
+        text_display(str(self.likes_counter),UI_FONT_SIZE,(LIKE_TEXT_X_POS,LIKE_TEXT_Y_POS))
+    def display_location(self):
+        text_display(self.location,UI_FONT_SIZE,(LOCATION_TEXT_X_POS,LOCATION_TEXT_Y_POS))
+
+    def display_description(self):
+        text_display(self.description,UI_FONT_SIZE,(DESCRIPTION_TEXT_X_POS,DESCRIPTION_TEXT_Y_POS))
+
+    def display_user_name(self):
+        text_display(self.user_name,UI_FONT_SIZE,(USER_NAME_X_POS,USER_NAME_Y_POS))
 
     def display_comments(self):
         """

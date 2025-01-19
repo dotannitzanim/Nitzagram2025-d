@@ -1,3 +1,6 @@
+import pygame
+
+
 class Button:
     """
     A class used to represent a Button on the screen
@@ -19,3 +22,6 @@ class Button:
         self.y_pos = y_pos
         self.width = width
         self.height = height
+
+    def get_rect(self):
+        return pygame.Rect(self.x_pos,self.y_pos,self.width,self.height)
